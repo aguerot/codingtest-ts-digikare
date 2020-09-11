@@ -6,13 +6,18 @@ Took me 15mn to find it, grab it and make it work
 Installation:
 ```
 git clone https://github.com/guillaumeagile/codingtest-ts-digikare
-cd typescript-tdd
+cd codingtest-ts-digikare
 npm install
 ```
 
 Run:
 ```
-npm test
+npm run start
+```
+
+Test:
+```
+npm run test
 ```
 
 This would watch source and test files for changes and execute the tests.

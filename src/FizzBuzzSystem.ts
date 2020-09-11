@@ -1,21 +1,21 @@
+import { FizzBuzz } from './FizzBuzz';
+import { Rule, zeroRule, fizzbuzzRule, fizzRule, buzzRule, stringRule } from './rules';
 
+export const fizzbuzzSystem: FizzBuzz = {
+    say: input => {
+        // rule order is important as find bellow takes first match
+        const rules: Rule[] = [
+            zeroRule,
+            fizzbuzzRule,
+            fizzRule,
+            buzzRule,
+            stringRule, // catch-all rule
+        ];
 
-export default class FizzBuzzSystem {
+        // find 1st applicable rule
+        // always at least one rule applies thanks to catch-all stringRule
+        const applicableRule = rules.find(r => r.applies(input));
 
-   mapOfRules_ : Map<string, number>;
-
-  constructor(mapOfRules : Map<string, number>) {
-    this.mapOfRules_= mapOfRules;
-  }
-
-  Say(x: number): string {
-    
-    let output: string = "";
-    if (x ==0)
-        return "0";
-    this.mapOfRules_.forEach( ( value: number,key: string) => { if (x % value === 0) output+= key } );        
-     if (output.length !==0)
-        return output;
-    return x.toString();
-  }
-}
+        return applicableRule.process(input);
+    }
+};
